@@ -1,15 +1,14 @@
 <template>
   <div class="searchBar flex justify-evenly items-center bg-white mx-auto rounded-lg shadow-md">
-    <select v-model="dest_id">
+    <select @change="onChangeDest($event)">
       <i class="fa-solid fa-location-dot"></i>
-      <option disabled>Where are you going</option>
-      <option v-for="city in cities" :key="city.city_name" value="`${dest_id}`">
-        {{ city.city_name }}
-      </option>
+      <option selected>Where are you going</option>
+      <template v-for="city in cities" :key="city.city_name">
+        <option v-if="city.city_name != ''" :value="city.dest_id">
+          {{ city.city_name }}
+        </option>
+      </template>
     </select>
-    <p>
-      {{ dest_id }}
-    </p>
 
     <!-- <Datepicker v-model="date" mode="dateTime">Date: {{ date.toJSON() }} </Datepicker> -->
     <input type="date" placeholder="Check in date" v-model="arrivalDate" v-bind="arrivalDate" />
@@ -60,6 +59,10 @@ export default {
       this.cities = data
       // console.log(data)
       console.log(this.cities)
+    },
+    onChangeDest($event) {
+      console.log($event.target.value)
+      this.dest_id = $event.target.value
     },
     async hotelDetailes() {
       const {
