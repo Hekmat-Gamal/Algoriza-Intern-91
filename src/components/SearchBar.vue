@@ -10,7 +10,6 @@
       </template>
     </select>
 
-    <!-- <Datepicker v-model="date" mode="dateTime">Date: {{ date.toJSON() }} </Datepicker> -->
     <input type="date" placeholder="Check in date" v-model="arrivalDate" v-bind="arrivalDate" />
     <input type="date" placeholder="Check out date" v-model="depatureDate" v-bind="arrivalDate" />
     <p>{{ depatureDate }}</p>
@@ -28,12 +27,6 @@ import { ref, reactive } from 'vue'
 export default {
   data() {
     return {
-      //        date = ref(new Date),
-      //       date.value.setDate(Number(data.value.getDate())+35),
-      //        range = reactive({
-      //         start : new Date() ,
-      //         end : data.value}
-      // ),
       cities: [],
       hotels: [],
       rooms: null,
@@ -43,7 +36,7 @@ export default {
       depatureDate: null
     }
   },
-  // components: { Datepicker },
+
   methods: {
     async searchCity() {
       const {
