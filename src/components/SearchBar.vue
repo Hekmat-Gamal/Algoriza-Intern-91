@@ -1,30 +1,60 @@
 <template>
-  <div class="searchBar flex justify-evenly items-center bg-white mx-auto rounded-lg shadow-md">
-    <select @change="onChangeDest($event)">
-      <i class="fa-solid fa-location-dot"></i>
-      <option selected>Where are you going</option>
-      <template v-for="city in cities" :key="city.city_name">
-        <option v-if="city.city_name != ''" :value="city.dest_id">
-          {{ city.city_name }}
-        </option>
-      </template>
-    </select>
+  <!-- Search Bar -->
+  <div class="searchBar flex justify-evenly items-baseline bg-white mx-auto rounded-lg shadow-md">
+    <!-- <VCalendar :min-date="new Date()" mode="date"></VCalendar> -->
+    <!-- <VDatePicker v-model="date"></VDatePicker>
+    <VCalendar></VCalendar> -->
+    <div>
+      <img src="../assets/imgs/locationIcon.png" alt="location icon" />
 
-    <input type="date" placeholder="Check in date" v-model="arrivalDate" v-bind="arrivalDate" />
-    <input type="date" placeholder="Check out date" v-model="depatureDate" v-bind="arrivalDate" />
-    <p>{{ depatureDate }}</p>
-    <input placeholder="Guests" v-model="adults" />
-    <input placeholder="Rooms" v-model="rooms" />
-    <span> {{ rooms }} {{ adults }}</span>
-    <button class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2">Search</button>
+      <select @change="onChangeDest($event)">
+        <option selected>Where are you going?</option>
+        <template v-for="city in cities" :key="city.city_name">
+          <option v-if="city.city_name != ''" :value="city.dest_id">
+            {{ city.city_name }}
+          </option>
+        </template>
+      </select>
+    </div>
+    <!-- Location End -->
+
+    <!-- Date Start -->
+    <div>
+      <img src="../assets/imgs/calendar 1.png" alt="" />
+      <input placeholder="Check in date" v-model="arrivalDate" v-bind="arrivalDate" />
+    </div>
+    <div>
+      <img src="../assets/imgs/calendar 1.png" alt="" />
+      <input placeholder="Check out date" v-model="depatureDate" v-bind="arrivalDate" />
+    </div>
+    <!-- Date End -->
+
+    <!-- Guest Start -->
+    <div>
+      <img src="../assets/imgs/guestIcon.png" alt="guest icon" />
+
+      <input placeholder="Guests" v-model="adults" />
+    </div>
+    <!-- Guest End -->
+
+    <!-- Rooms Start -->
+    <div>
+      <img src="../assets/imgs/bed.png" alt="room icon" />
+      <input placeholder=" Rooms" v-model="rooms" />
+    </div>
+    <!-- Rooms End -->
+
+    <div>
+      <button class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2">Search</button>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import { ref, reactive } from 'vue'
-//composition api
+import { ref } from 'vue'
 export default {
+  //composition api
   data() {
     return {
       cities: [],
@@ -32,11 +62,11 @@ export default {
       rooms: null,
       adults: null,
       dest_id: null,
-      arrivalDate: null,
-      depatureDate: null
+      arrivalDate: new Date(),
+      depatureDate: new Date().setMonth(0)
     }
   },
-
+  // components:
   methods: {
     async searchCity() {
       const {
@@ -80,7 +110,8 @@ export default {
     }
   },
   mounted() {
-    this.searchCity()
+    // this.searchCity()
+    this.arrivalDate()
     // this.hotelDetailes() // on ubmit
   }
 }
@@ -95,8 +126,17 @@ export default {
 }
 .searchBar input,
 .searchBar select {
-  @apply bg-input-bg mr-4 text-xs rounded;
+  @apply bg-input-bg text-xs rounded pl-5 box-border;
   height: 43px;
-  max-width: 206px;
+}
+.searchBar div {
+  position: relative;
+  top: -10px;
+}
+.searchBar img {
+  width: 20px;
+  height: 20px;
+
+  @apply relative left-[3px] top-[31px];
 }
 </style>

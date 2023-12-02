@@ -1,5 +1,5 @@
 <template>
-  <div class="my-7 mx-auto w-[810px]">
+  <div class="my-7 w-[810px]">
     <div class="bg-imp-col rounded-t-md">
       <p class="text-lg font-medium p-[12px]">Important information about your booking</p>
     </div>

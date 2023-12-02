@@ -96,7 +96,7 @@ export default {}
 <style>
 .roomCard,
 .paymentCard {
-  @apply w-[810px] mx-auto my-7 rounded-md;
+  @apply w-[810px] my-7 rounded-md;
 }
 .roomCard label,
 .payOp label {

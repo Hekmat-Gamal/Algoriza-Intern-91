@@ -31,3 +31,107 @@ uuid ?
 
 
   وانا بستخدم الريف بحط الحاجات ف اوبجكت و اساوي 
+
+
+
+
+
+
+
+
+
+
+
+  <template>
+  <div class="searchBar flex justify-evenly items-center bg-white mx-auto rounded-lg shadow-md">
+    <select @change="onChangeDest">
+      <i class="fa-solid fa-location-dot"></i>
+      <option selected>Where are you going</option>
+      <template v-for="city in cities" :key="city.city_name">
+        <option v-if="city.city_name != ''" :value="city.dest_id">
+          {{ city.city_name }}
+        </option>
+      </template>
+    </select>
+
+    <input type="date" placeholder="Check in date" v-model="arrivalDate" v-bind="arrivalDate" />
+    <input type="date" placeholder="Check out date" v-model="depatureDate" v-bind="arrivalDate" />
+    <p>{{ depatureDate }}</p>
+    <input placeholder="Guests" v-model="adults" />
+    <input placeholder="Rooms" v-model="rooms" />
+    <span> {{ rooms }} {{ adults }}</span>
+    <button class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2">Search</button>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import { ref, reactive } from 'vue'
+//composition api
+export default {
+  setup() {
+    const cities = ref([])
+    const hotels = ref([])
+    const rooms = ref(null)
+    const adults = ref(null)
+    const dest_id = ref(null)
+    const arrivalDate = ref(null)
+    const depatureDate = ref(null)
+    const searchCity = async () => {
+      const {
+        data: { data }
+      } = await axios.get('https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination', {
+        params: { query: 'egypt', search_type: 'city' },
+        headers: {
+          'X-RapidAPI-Key': '1525c78c5emsh8a81882367404d0p1dc918jsnf8313c40f51b',
+          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+        }
+      })
+      cities = data
+      console.log(cities)
+    }
+    const onChangeDest = ($event) => {
+      console.log($event.target.value)
+      dest_id = $event.target.value
+    }
+    const hotelDetailes = async () => {
+      const {
+        data: { data }
+      } = await axios.get('https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels', {
+        params: {
+          dest_id: dest_id,
+          search_type: 'CITY',
+          arrival_date: arrivalDate,
+          departure_date: depatureDate,
+          adults: adults,
+          room_qty: rooms
+        },
+        headers: {
+          'X-RapidAPI-Key': '1525c78c5emsh8a81882367404d0p1dc918jsnf8313c40f51b',
+          'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
+        }
+      })
+      hotels = data
+      console.log(data)
+    }
+  },
+  onMounted() {
+    searchCity()
+  }
+}
+</script>
+
+<style>
+.searchBar {
+  width: 1050px;
+  height: 64px;
+  position: relative;
+  top: -75px;
+}
+.searchBar input,
+.searchBar select {
+  @apply bg-input-bg mr-4 text-xs rounded;
+  height: 43px;
+  max-width: 206px;
+}
+</style>
