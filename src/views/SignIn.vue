@@ -1,7 +1,7 @@
 <template>
   <SimpleNav class="py-5 px-24"></SimpleNav>
 
-  <form class="mt-8 mx-auto w-[400px]">
+  <form class="mt-8 mx-auto w-[400px]" @submit.prevent="registerUser()">
     <h5 class="text-[28px] text-center font-semibold">Sign in</h5>
 
     <div class="items">
@@ -12,9 +12,10 @@
         type="email"
         v-model="email"
       />
-      <!-- <span v-if="!email.include('@')" class="text-red-700"> * Required Field</span> -->
+      <span class="error" v-show="emailError">email required</span>
       <label class="text-sm block mt-5">Password</label>
       <input class="bg-input-bg w-[400px] h-11 rounded block" type="password" v-model="password" />
+      <span class="error" v-show="passError">Password required</span>
       <button class="bg-primary-col text-white w-[400px] h-11 rounded-md block mt-8">
         Sign In
       </button>
@@ -29,19 +30,65 @@
   </form>
 </template>
 
-<script>
+<script setup>
 import SimpleNav from '../components/SimpleNav.vue'
-import { useUserStore } from '../stores/user'
-export default {
-  components: {
-    SimpleNav,
-    setup() {
-      const Store = useUserStore()
-      console.log(Store.users)
-      return Store
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+components: {
+  SimpleNav
+}
+const Router = useRouter()
+const email = ref('')
+const password = ref('')
+
+let emailError = ref(false)
+let passError = ref(false)
+
+onMounted(() => {})
+
+function validateRequired(value) {
+  if (value.value === '') {
+    return false
+  } else {
+    return true
+  }
+}
+
+function isUserRegister(userEmail) {
+  let users = JSON.parse(localStorage.getItem('users'))
+  if (users) {
+    return users.some((user) => user.email === userEmail)
+  }
+}
+
+function registerUser() {
+  if (!validateRequired(email)) {
+    emailError.value = true
+  } else {
+    emailError.value = false
+  }
+  if (!validateRequired(password)) {
+    passError.value = true
+  } else {
+    passError.value = false
+  }
+
+  let users = JSON.parse(localStorage.getItem('users'))
+
+  if (!emailError.value && !passError.value) {
+    if (users) {
+      if (isUserRegister(email.value)) {
+        Router.push('/')
+      } else {
+        Router.push('/Register')
+      }
     }
   }
 }
 </script>
 
-<style></style>
+<style>
+.error {
+  @apply text-error-col text-sm inline-block mt-3;
+}
+</style>

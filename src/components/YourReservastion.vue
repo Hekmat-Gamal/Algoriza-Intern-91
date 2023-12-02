@@ -1,6 +1,6 @@
 <template>
   <div class="w-[400px] rounded-md bg-white pl-5 my-[30px]">
-    <img src="" alt="PLace You Reserve" class="h-44" />
+    <img src="../assets/imgs/Lakeside Motel Warefront.png" alt="PLace You Reserve" class="h-44" />
     <p class="text-lg font-medium">Name</p>
     <div class="font-normal text-sm">
       <p class="text-gray py-2"></p>

@@ -1,5 +1,5 @@
 <template>
-  <div class="rating w-[300px] rounded-md border-gray2 border-2 mt-5">
+  <div class="rating w-[295px] rounded-md border-gray2 border-2 mt-5">
     <div class="bg-input-bg pl-5">
       <p class="font-medium text-base pt-3">Rating</p>
     </div>

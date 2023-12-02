@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[300px] h-[135px] rounded-md bg-input-bg pl-5">
+  <div class="w-[295px] h-[135px] rounded-md bg-input-bg pl-5">
     <p class="font-medium text-base pt-3">Search by property name</p>
     <img class="relative top-8 w-4 h-4" src="../assets/imgs/search.png" alt="search icon" />
     <input
