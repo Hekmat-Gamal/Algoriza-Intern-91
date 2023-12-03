@@ -16,6 +16,7 @@ module.exports = {
         gray3: '#D9D9D9',
         gray4: '#828282',
         red: '#EB5757',
+        yellow: '#FFD723',
         'price-col': '#85E0AB'
       },
       fontFamily: {

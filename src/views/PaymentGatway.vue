@@ -1,20 +1,23 @@
 <template>
-  <SimpleNav />
-  <div class="bg-input-bg mx-auto">
-    <p class="text-3xl font-semibold w-[1240px] my-7 mx-auto">Secure your reservation</p>
-    <Warning />
-    <div class="gridContainer w-[1240px] mx-auto">
-      <div class="gridAreaLeftSide">
-        <payOp />
-        <BookingVue />
-      </div>
-      <div class="gridAreaRightSide">
-        <YourReservastionVue />
-        <PricePay />
+  <div>
+
+    <SimpleNav />
+    <div class="bg-input-bg mx-auto">
+      <p class="text-3xl font-semibold w-[1240px] my-7 mx-auto">Secure your reservation</p>
+      <Warning />
+      <div class="gridContainer w-[1240px] mx-auto">
+        <div class="gridAreaLeftSide">
+          <payOp />
+          <BookingVue />
+        </div>
+        <div class="gridAreaRightSide">
+          <YourReservastionVue />
+          <PricePay />
+        </div>
       </div>
     </div>
   </div>
-</template>
+  </template>
 
 <script>
 import SimpleNav from '../components/SimpleNav.vue'
@@ -25,7 +28,7 @@ import YourReservastionVue from '../components/YourReservastion.vue'
 import PricePay from '../components/PricePay.vue'
 
 export default {
-  name: 'payment',
+  name: 'payments',
   components: { SimpleNav, Warning, BookingVue, payOp, YourReservastionVue, PricePay }
 }
 </script>

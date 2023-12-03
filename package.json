@@ -13,10 +13,8 @@
     "@popperjs/core": "^2.11.8",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.2",
-    "pinia": "^2.1.7",
     "postcss": "^8.4.31",
-    "v-calendar": "^3.1.2",
-    "vee-validate": "^3.4.15",
+4
     "vue": "^3.3.9",
     "vue-class-component": "^7.2.6",
     "vue-router": "^4.2.5",

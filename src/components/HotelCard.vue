@@ -28,7 +28,10 @@
             $ {{ Math.round(hotel.property.priceBreakdown.grossPrice.value) }}
           </span>
           <p class="text-[13px] font-normal"></p>
-          <button class="bg-primary-col px-[18px] py-[10px] text-white rounded my-5">
+          <button
+            @click="checkHotel()"
+            class="bg-primary-col px-[18px] py-[10px] text-white rounded my-5"
+          >
             See availability
           </button>
         </div>
@@ -38,9 +41,10 @@
 </template>
 <script setup>
 import axios from 'axios'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 const route = useRoute()
+const router = useRouter()
 let hotels = []
 let sorted = []
 async function searchHotel() {
@@ -93,11 +97,13 @@ function onChangeDest($event) {
   id = $event.target.id
   console.log(id)
 }
+function checkHotel() {
+  router.push('/hoteldetails')
+}
 
 onMounted(() => {
   searchHotel()
   sortedBY()
-  console.log(route.query)
 })
 </script>
 

@@ -18,7 +18,7 @@
         have reviewd and accept the <router-link to="#">Rules and Restrictions</router-link> and
         <router-link to="#">Terms of Use</router-link> .
       </p>
-      <button class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2 mt-6 ml-4">
+      <button @click="Move()" class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2 mt-6 ml-4">
         Complete Booking
       </button>
       <div class="mt-[21px] ml-4 pb-5">
@@ -31,10 +31,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'booking'
-}
+<script setup>
+name: 'booking'
+import useRouter from ' vue'
+const router = useRouter();
+function Move(){
+  router.push('/trips')
+} 
+
 </script>
 
 <style>
