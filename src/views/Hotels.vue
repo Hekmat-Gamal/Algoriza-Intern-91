@@ -11,6 +11,8 @@
       <HotelCard />
       <HotelCard />
     </div>
+    <Warning></Warning>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -21,15 +23,21 @@ import SortedBy from '../components/SortedBy.vue'
 import FilterByVue from '../components/FilterBy.vue'
 import Rating from '../components/Rating.vue'
 import HotelCard from '../components/HotelCard.vue'
+import Warning from '../components/Warning.vue'
+import Footer from '../components/Footer.vue'
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
 components: {
-  Nav, SearchBar, SortedBy, FilterByVue, Rating, HotelCard
+  Nav, SearchBar, SortedBy, FilterByVue, Rating, HotelCard, Warning, Footer
 }
 </script>
 <style>
 .hotelNav {
   background-image: linear-gradient(180deg, #2969bf 0%, #144e9d 100%);
+  color: white;
+}
+.hotelNav span {
+  color: white;
 }
 .container {
   display: grid;

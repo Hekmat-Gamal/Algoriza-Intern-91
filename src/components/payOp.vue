@@ -19,7 +19,9 @@
       <label class="block mt-5 mr-5 w-60">Mobile number</label>
       <div class="flex">
         <div>
-          <select type="text" class="w-[150px] mr-3"></select>
+          <select type="text" class="w-[150px] mr-3" disabled>
+            <option selected>+61</option>
+          </select>
           <input type="text" class="w-[338px]" />
         </div>
       </div>

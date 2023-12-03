@@ -1,12 +1,11 @@
 <template>
   <!-- Search Bar -->
-  <form>
-    <div class="searchBar flex justify-evenly items-baseline bg-white mx-auto rounded-lg shadow-md">
+  <form @submit.prevent="searchAvilabitiy()">
+    <div class="searchBar flex justify-evenly items-center bg-white mx-auto rounded-lg shadow-md">
       <div>
         <img src="../assets/imgs/locationIcon.png" alt="location icon" />
-
-        <select @change="onChangeDest($event)">
-          <option selected>Where are you going?</option>
+        <select v-model="dest_id">
+          <option selected value="123">Where are you going?</option>
           <template v-for="city in cities" :key="city.city_name">
             <option v-if="city.city_name != ''" :value="city.dest_id">
               {{ city.city_name }}
@@ -39,9 +38,8 @@
         <input placeholder=" Rooms" v-model="rooms" />
       </div>
       <!-- Rooms End -->
-      <div>
-        <button class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2">Search</button>
-      </div>
+
+      <button class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2">Search</button>
     </div>
   </form>
 </template>
@@ -50,14 +48,15 @@
 import axios from 'axios'
 import { onMounted, ref } from 'vue'
 import Datepicker from 'vue3-datepicker'
+import { useRouter } from 'vue-router'
+const Router = useRouter()
 
-let cities = []
-let hotels = []
+let cities = ref([])
 let rooms = ref(null)
 let adults = ref(null)
-let dest_id = ref('')
+let dest_id = ref('123')
 let arrivalDate = ref(new Date())
-let depatureDate = '2024-01-01'
+let depatureDate = ref(new Date())
 
 async function searchCity() {
   const {
@@ -65,7 +64,7 @@ async function searchCity() {
   } = await axios.get('https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination', {
     params: { query: 'egypt', search_type: 'city' },
     headers: {
-      'X-RapidAPI-Key': '1525c78c5emsh8a81882367404d0p1dc918jsnf8313c40f51b',
+      'X-RapidAPI-Key': '23c56101a3msh650fbdde5a8bd53p1c3b52jsnf4d7fc76155e',
       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     }
   })
@@ -73,11 +72,31 @@ async function searchCity() {
   console.log(cities)
 }
 function onChangeDest($event) {
-  console.log($event.target.value)
+  console.log($event)
   dest_id = $event.target.value
   console.log(dest_id)
 }
-onMounted(() => searchCity())
+
+function searchAvilabitiy() {
+  let user = JSON.parse(localStorage.getItem('loggedUser'))
+  if (user) {
+    Router.push({
+      name: 'hotels',
+      query: {
+        dest_id: dest_id.value,
+        arrivalDate: arrivalDate.value.toISOString().split('T')[0],
+        depatureDate: depatureDate.value.toISOString().split('T')[0],
+        rooms: rooms.value,
+        adults: adults.value
+      }
+    })
+  } else {
+    Router.push('/register')
+  }
+}
+onMounted(() => {
+  searchCity()
+})
 </script>
 
 <style>
@@ -94,13 +113,17 @@ Datepicker {
   height: 43px;
 }
 .searchBar div {
-  position: relative;
-  top: -10px;
+  @apply flex items-center relative;
 }
 .searchBar img {
-  width: 20px;
-  height: 20px;
+  @apply w-[18px] h-[18px] absolute left-[5px] top-[50%] z-10;
+  transform: translateY(-50%);
 
-  @apply relative left-[3px] top-[31px];
+  /* width: 20px; */
+  /* height: 20px;
+  position: absolute;
+  left: 3px;
+  z-index: 100;
+  top: 50%; */
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <SimpleNav class="py-5 px-24"></SimpleNav>
+  <SimpleNav class="py-5 px-24 navBar"></SimpleNav>
   <form class="mt-8 mx-auto w-[400px]" @submit.prevent="registerUser()">
     <h5 class="text-[28px] text-center font-semibold">Register</h5>
     <div class="items">
@@ -113,5 +113,8 @@ function registerUser() {
 <style>
 .error {
   @apply text-error-col text-sm inline-block mt-3;
+}
+.navBar span {
+  @apply text-white;
 }
 </style>

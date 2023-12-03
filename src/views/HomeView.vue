@@ -1,19 +1,17 @@
-<template v-modal="">
-  <!-- <WelcomeCardVue /> -->
-  <main>
-    <Nav></Nav>
-    <Hero />
-    <SearchBar />
-    <Warning />
-    <EnjoyVue />
-    <InspireVue />
-    <PopHotelsVue />
-    <MobileApp />
-    <Footer></Footer>
-  </main>
+<template>
+  <WelcomeCardVue></WelcomeCardVue>
+  <Nav class="mx-[70px]"></Nav>
+  <Hero />
+  <SearchBar />
+  <Warning />
+  <EnjoyVue />
+  <InspireVue />
+  <PopHotelsVue />
+  <MobileApp />
+  <Footer></Footer>
 </template>
 
-<script>
+<script setup>
 import Nav from '../components/Nav.vue'
 import Hero from '../components/Hero.vue'
 import SearchBar from '../components/SearchBar.vue'
@@ -24,9 +22,9 @@ import PopHotelsVue from '../components/PopHotels.vue'
 import MobileApp from '../components/MobileApp.vue'
 import Footer from '../components/Footer.vue'
 import WelcomeCardVue from '../components/WelcomeCard.vue'
-export default {
-  components: {
-    WelcomeCardVue,
+
+components: {
+  WelcomeCardVue,
     Nav,
     Hero,
     SearchBar,
@@ -36,13 +34,6 @@ export default {
     PopHotelsVue,
     MobileApp,
     Footer
-  },
-  data() {
-    return {
-      modal: false
-    }
-  },
-  methods: {}
 }
 </script>
 <style></style>

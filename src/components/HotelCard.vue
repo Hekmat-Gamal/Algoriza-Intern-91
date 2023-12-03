@@ -13,7 +13,11 @@
   <template v-for="hotel in hotels" :key="hotel.name">
     <div class="rounded border-gray2 border-2 w-[915px] h-[240px] mb-[14px]">
       <div class="flex">
-        <img :src="hotel.property.photoUrls[0]" alt="Hotel view" class="w-[285px] h-[200px] p-5" />
+        <img
+          :src="hotel.property.photoUrls[0]"
+          alt="Hotel view"
+          class="w-[285px] h-[200px] p-5 rounded-md"
+        />
         <div>
           <p class="font-medium text-xl p-5">{{ hotel.property.name }}</p>
           <p class="text-[13px] font-medium w-[360px]">{{ hotel.accessibilityLabel }}</p>
@@ -34,8 +38,9 @@
 </template>
 <script setup>
 import axios from 'axios'
-
+import { useRoute } from 'vue-router'
 import { onMounted } from 'vue'
+const route = useRoute()
 let hotels = []
 let sorted = []
 async function searchHotel() {
@@ -43,19 +48,19 @@ async function searchHotel() {
     data: { data }
   } = await axios.get('https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotels', {
     params: {
-      dest_id: '-290029',
+      dest_id: route.query.dest_id,
       search_type: 'CITY',
-      arrival_date: '2023-12-03',
-      departure_date: '2024-01-01',
-      adults: '1',
-      children_age: '0,17',
-      room_qty: '1',
+      arrival_date: route.query.arrival_date,
+      departure_date: route.query.departure_date,
+      adults: route.query.adults,
+      children_age: '1,17',
+      room_qty: route.query.rooms,
       page_number: '1',
       languagecode: 'en-us',
       currency_code: 'AED'
     },
     headers: {
-      'X-RapidAPI-Key': '1525c78c5emsh8a81882367404d0p1dc918jsnf8313c40f51b',
+      'X-RapidAPI-Key': '23c56101a3msh650fbdde5a8bd53p1c3b52jsnf4d7fc76155e',
       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     }
   })
@@ -67,16 +72,16 @@ async function sortedBY() {
     data: { data }
   } = await axios.get('https://booking-com15.p.rapidapi.com/api/v1/hotels/getSortBy', {
     params: {
-      dest_id: '-290029',
+      dest_id: route.query.dest_id,
       search_type: 'CITY',
-      arrival_date: '2023-11-03',
-      departure_date: '2024-01-01',
-      adults: '1',
+      arrival_date: route.query.arrival_date,
+      departure_date: route.query.departure_date,
+      adults: route.query.adults,
       children_age: '1,17',
-      room_qty: '1'
+      room_qty: route.query.rooms
     },
     headers: {
-      'X-RapidAPI-Key': '1525c78c5emsh8a81882367404d0p1dc918jsnf8313c40f51b',
+      'X-RapidAPI-Key': '23c56101a3msh650fbdde5a8bd53p1c3b52jsnf4d7fc76155e',
       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     }
   })
@@ -88,9 +93,11 @@ function onChangeDest($event) {
   id = $event.target.id
   console.log(id)
 }
+
 onMounted(() => {
   searchHotel()
   sortedBY()
+  console.log(route.query)
 })
 </script>
 
