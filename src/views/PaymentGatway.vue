@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <SimpleNav />
     <div class="bg-input-bg mx-auto">
       <p class="text-3xl font-semibold w-[1240px] my-7 mx-auto">Secure your reservation</p>
@@ -17,7 +16,7 @@
       </div>
     </div>
   </div>
-  </template>
+</template>
 
 <script>
 import SimpleNav from '../components/SimpleNav.vue'

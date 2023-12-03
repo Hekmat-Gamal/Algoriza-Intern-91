@@ -64,7 +64,7 @@ async function searchCity() {
   } = await axios.get('https://booking-com15.p.rapidapi.com/api/v1/hotels/searchDestination', {
     params: { query: 'egypt', search_type: 'city' },
     headers: {
-      'X-RapidAPI-Key': '23c56101a3msh650fbdde5a8bd53p1c3b52jsnf4d7fc76155e',
+      'X-RapidAPI-Key': '7160e0018bmshc22f0a1fe576e27p15e18ejsn4cfe8693738e',
       'X-RapidAPI-Host': 'booking-com15.p.rapidapi.com'
     }
   })
@@ -118,12 +118,5 @@ Datepicker {
 .searchBar img {
   @apply w-[18px] h-[18px] absolute left-[5px] top-[50%] z-10;
   transform: translateY(-50%);
-
-  /* width: 20px; */
-  /* height: 20px;
-  position: absolute;
-  left: 3px;
-  z-index: 100;
-  top: 50%; */
 }
 </style>

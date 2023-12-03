@@ -3,7 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import SignIn from '../views/SignIn.vue'
 import Register from '../views/Register.vue'
 import Hotels from '../views/Hotels.vue'
-import PaymentGateWay from '../views/PaymentGateWay.vue'
+import HotelsDetails from '../views/HotelsDetails.vue'
+import PaymentGatway from '../views/PaymentGatway.vue'
 import Trips from '../views/Trips.vue'
 
 const $router = useRouter()
@@ -72,7 +73,7 @@ const router = createRouter({
     {
       path: '/payments',
       name: 'payments',
-      component: PaymentGateWay,
+      component: PaymentGatway,
       beforeEnter: () => {
         const user = JSON.parse(localStorage.getItem('loggedUser'))
         if (user) {

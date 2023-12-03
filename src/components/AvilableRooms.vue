@@ -16,52 +16,61 @@
       </div>
       <!--  -->
       <div>
-  <img src="../assets/imgs/room.png" alt="">
-  <div class="pl-5">
-    <p class=" font-medium text-lg"></p>
-    <div class="flex">
-      <img src="../assets/imgs/bag-tick.png" >
-      <p class=" text-gray">300 sq ft</p>
+        <img src="../assets/imgs/room.png" alt="" />
+        <div class="pl-5">
+          <p class="font-medium text-lg"></p>
+          <div class="flex">
+            <img src="../assets/imgs/bag-tick.png" />
+            <p class="text-gray">300 sq ft</p>
+          </div>
+          <div class="flex">
+            <img src="../assets/imgs/lifebuoy1.png" />
+            <p class="text-gray">Sleeps 3</p>
+          </div>
+          <div class="flex">
+            <img src="../assets/imgs/like-graypng.png" />
+            <p class="text-gray">1 double bed and 1 twin bed</p>
+          </div>
+          <button
+            @click="Move()"
+            class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2 mt-6 mx-auto"
+          >
+            Reserve suite
+          </button>
+        </div>
+        <!--  -->
+        <div>
+          <img src="../assets/imgs/room2.png" alt="" />
+          <div class="pl-5">
+            <p class="text-gray">300 sq ft</p>
+            <div class="flex">
+              <img src="../assets/imgs/bag-tik.png" />
+              <p class="text-gray">Sleeps 3</p>
+            </div>
+            <div class="flex">
+              <img src="../assets/imgs/lifebuoy1.png" />
+              <p class="font-medium text-lg">1 double bed and 1 twin bed</p>
+            </div>
+            <div class="flex">
+              <img src="../assets/imgs/like-graypng.png" />
+              <p class="text-gray">300 sq ft</p>
+            </div>
+            <button
+              @click="Move()"
+              class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2 mt-6 mx-auto"
+            >
+              Reserve suite
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="flex">
-      <img src="../assets/imgs/lifebuoy1.png" >
-      <p class=" text-gray">Sleeps 3</p>
-    </div>
-    <div class="flex">
-      <img src="../assets/imgs/like-graypng.png" >
-      <p class=" text-gray">1 double bed and 1 twin bed</p>
-    </div>
-    <button  @click="Move()" class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2 mt-6 mx-auto">Reserve suite</button>
-    
-  </div>
-  <!--  -->
-  <div>
-    <img src="../assets/imgs/room2.png" alt="">
-    <div class="pl-5">
-    <p class=" text-gray">300 sq ft</p>
-    <div class="flex">
-      <img src="../assets/imgs/bag-tik.png" >
-      <p class=" text-gray">Sleeps 3</p>
-    </div>
-    <div class="flex">
-      <img src="../assets/imgs/lifebuoy1.png" >
-      <p class=" font-medium text-lg">1 double bed and 1 twin bed</p>
-    </div>
-    <div class="flex">
-      <img src="../assets/imgs/like-graypng.png" >
-      <p class=" text-gray">300 sq ft</p>
-    </div>
-    <button @click="Move()" class="bg-primary-col text-white rounded-[6px] text-sm px-4 py-2 mt-6 mx-auto">Reserve suite</button>
-  </div>
-</div>
-    </div>
-  </div>
   </div>
 </template>
 
 <script>
-import useRouter from 'vue'
-router = useRouter()
+import { useRouter } from 'vue-router'
+const router = useRouter()
 function Move(){
   router.push('/payments')
 }

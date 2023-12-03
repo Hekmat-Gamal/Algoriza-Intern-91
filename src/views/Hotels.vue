@@ -11,9 +11,10 @@
       <HotelCard />
       <HotelCard />
     </div>
-    <Warning></Warning>
-    <Footer></Footer>
   </div>
+
+  <Warning></Warning>
+  <Footer></Footer>
 </template>
 
 <script setup>
@@ -48,6 +49,7 @@ components: {
   grid-area: rightSide;
 }
 .leftSide {
+  margin-left: 100px;
   grid-area: leftSide;
 }
 </style>

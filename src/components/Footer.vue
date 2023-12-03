@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-2">
+  <footer class="mt-2 block">
     <div class="flex justify-evenly">
       <div>
         <div class="flex">
